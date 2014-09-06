@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    </head>
+    <body>
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">MusicControl</a>
+            </div>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                    <li><a href="#backward"><span class="glyphicon glyphicon-backward"></span></a></li>
+                    {% if itunesstatus == 'play' %}
+                        <li><a href="#pause"><span class="glyphicon glyphicon-pause"></span></a></li>
+                    {% else %}
+                        <li><a href="#play"><span class="glyphicon glyphicon-play"></span></a></li>
+                    {% endif %}
+                    <li><a href="#forward"><span class="glyphicon glyphicon-forward"></span></a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+        <div class="row">
+            {% block body %}
+            {% endblock %}
+        </div>
+        <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/bootstrap/js/dropdown.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/bootstrap/js/button.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/bootstrap/js/collapse.js') }}"></script>
+    </body>
+</html>
