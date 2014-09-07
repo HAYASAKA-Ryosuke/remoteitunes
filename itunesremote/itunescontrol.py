@@ -38,6 +38,12 @@ class controlitunes(object):
     def play(self, name=None):
         return self._itunesctrl('tell application "iTunes" to play')
 
+    def positionlengthinfo(self):
+        return self._itunesctrl('tell application "iTunes" set hoge to time of current track')
+
+    def positioninfo(self):
+        return self._itunesctrl('tell application "itunes" to player position')
+
     def pause(self):
         return self._itunesctrl('tell application "iTunes" to pause')
 
