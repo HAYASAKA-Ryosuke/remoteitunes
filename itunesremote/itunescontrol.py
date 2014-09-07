@@ -1,33 +1,57 @@
 # coding:utf-8
-from subprocess import Popen PIPE
+from subprocess import Popen, PIPE
 import os
 
 class controlitunes(object):
 
-    def itunesctrl(cmd):
-        execute = Popen(["osascript", "-"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
-        res, err = execute.communicate(cmd)
-        return res
+    def _itunesctrl(self, cmd):
+        
+        if hasattr(cmd, "encode"):
+            cmd = cmd.encode("utf-8")
+        
+        osa = Popen(["osascript", "-"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
+        res, err = osa.communicate(script)
+        
+        if err:
+            raise Exception(err)
+        
+        return res.decode("utf-8")
+
+    def albuminfo(self):
+        return self._itunesctrl('tell application "iTunes" to album of current track as string')
+
+    def mute(self):
+        return self._itunesctrl('tell application "iTunes" to set mute to true')
+
+    def unmute(self):
+        return self._itunesctrl('tell application "iTunes" to set mute to false')
+
+    def artistinfo(self):
+        return self._itunesctrl('tell application "iTunes" to artist of current track as string')
+
+    def trackinfo(self):
+        return self._itunesctrl('tell application "iTunes" to name of current track as string')
+
+    def status(self):
+        return self._itunesctrl('tell application "iTunes" to player state as string').split()[0]
 
     def play(self, name=None):
-        return itunesctrl('tell application "iTunes" to play')
+        return self._itunesctrl('tell application "iTunes" to play')
 
     def pause(self):
-        return itunesctrl('tell application "iTunes" to pause')
+        return self._itunesctrl('tell application "iTunes" to pause')
 
     def stop(self):
-        return itunesctrl('tell application "iTunes" to stop')
+        return self._itunesctrl('tell application "iTunes" to stop')
 
-    def next(self):
-        return itunesctrl('tell application "iTunes" to next track')
+    def nexttrack(self):
+        return self._itunesctrl('tell application "iTunes" to next track')
 
-    def prev(self):
-        return itunesctrl('tell application "iTunes" to previous track')
+    def prevtrack(self):
+        return self._itunesctrl('tell application "iTunes" to previous track')
 
-    def vol(self, value):
-        cmd = """osascript -e 'tell application "iTunes" to set sound volume to '"""+str(value)
-        return itunesctrl('tell application "iTunes" to set sound volume to '+str())
-        os.system(cmd)
+    def volume(self, value):
+        return self._itunesctrl('tell application "iTunes" to set sound volume to '+str(value))
 
     def playlist(self):
         pass

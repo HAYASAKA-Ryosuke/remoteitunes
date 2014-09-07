@@ -47,7 +47,6 @@
                 step: 1,
                 value: 50,
                 change: function(e, ui) {
-                    alert(ui.value);
                     $.get("/itunes", {soundvalue: ui.value});
                 },
             });
