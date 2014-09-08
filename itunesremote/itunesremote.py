@@ -20,7 +20,7 @@ def index(param=None):
     print(request.args.get('soundvalue'))
     if itunesstatus == 'play':
         itunes.play()
-    elif itunesstatus == 'pause'
+    elif itunesstatus == 'pause':
         itunes.pause()
     return render_template('index.html', itunesstatus=itunesstatus)
 
