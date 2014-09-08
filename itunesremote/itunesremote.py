@@ -11,7 +11,9 @@ itunes = itunescontrol.controlitunes()
 @app.route('/itunes/<param>')
 def index(param=None):
     itunesstatus = param
-    print(request.args.get('soundvalue'))
+    soundparam = request.args.get('soundvalue')
+    if soundparam is not None:
+        itunes.volume(soundparam)
     if itunesstatus == 'play':
         itunes.play()
     elif itunesstatus == 'pause':
