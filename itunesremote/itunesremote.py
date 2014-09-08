@@ -6,12 +6,6 @@ import itunescontrol
 app = Flask(__name__)
 itunes = itunescontrol.controlitunes()
 
-def playmusic():
-    pass
-
-def pausemusic():
-    pass
-
 
 @app.route('/itunes/')
 @app.route('/itunes/<param>')
