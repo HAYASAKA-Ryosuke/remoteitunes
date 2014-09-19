@@ -3,6 +3,7 @@ from subprocess import Popen, PIPE
 
 
 class controlitunes(object):
+    musicname = 'Nue'
 
     def _itunesctrl(self, cmd):
         if hasattr(cmd, "encode"):
@@ -31,12 +32,11 @@ class controlitunes(object):
     def status(self):
         return self._itunesctrl('tell application "iTunes" to player state as string').split()[0]
 
-    def play(self, name=None):
-        #return self._itunesctrl('tell application "iTunes" to play')
-        return self._itunesctrl('tell application \"iTunes\" to play track 3422 of playlist 1')
+    def play(self, musicname=None):
+        return self._itunesctrl('tell application "iTunes" to play track "' + str(self.musicname) + '" of playlist 2')
 
     def positionlengthinfo(self):
-        return self._itunesctrl('tell application "iTunes" set hoge to time of current track')
+        return self._itunesctrl('tell application "iTunes" to time of current track')
 
     def positioninfo(self):
         return self._itunesctrl('tell application "itunes" to player position')
@@ -56,14 +56,14 @@ class controlitunes(object):
     def volume(self, value):
         return self._itunesctrl('tell application "iTunes" to set sound volume to '+str(value))
 
-    def musiclibinfo(self):
+    def playlist_album(self):
+        return self._itunesctrl('tell application "iTunes" to (get album of every track in playlist "ミュージック")')
 
-        def tracklist():
-            return self._itunesctrl('tell application \"iTunes\" to (get name of every track in playlist \"ライブラリ\")')
+    def playlist_name(self):
+        return self._itunesctrl('tell application "iTunes" to (get name of every track in playlist "ミュージック")')
 
-        def albumlist():
-            return self._itunesctrl('tell application \"iTunes\" to (get album of every track in playlist \"ライブラリ\")')
+    def playlist_id(self):
+        return self._itunesctrl('tell application "iTunes" to (get id of every track in playlist "ミュージック")')
 
-        def idlist():
-            return self._itunesctrl('tell application \"iTunes\" to (get id of every track in playlist \"ライブラリ\")')
-        return idlist()
+    def playlist_artist(self):
+        return self._itunesctrl('tell application "iTunes" to (get artist of every track in playlist "ミュージック")')
