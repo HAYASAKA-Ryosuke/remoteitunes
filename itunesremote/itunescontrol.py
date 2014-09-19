@@ -59,6 +59,14 @@ class controlitunes(object):
     def volume(self, value):
         return self._itunesctrl('tell application "iTunes" to set sound volume to '+str(value))
 
-    def playlist(self):
-        pass
+    def playlist_album(self):
+        return self._itunesctrl('tell application "iTunes" to (get album of every track in playlist "ミュージック")')
 
+    def playlist_name(self):
+        return self._itunesctrl('tell application "iTunes" to (get name of every track in playlist "ミュージック")')
+
+    def playlist_id(self):
+        return self._itunesctrl('tell application "iTunes" to (get id of every track in playlist "ミュージック")')
+
+    def playlist_artist(self):
+        return self._itunesctrl('tell application "iTunes" to (get artist of every track in playlist "ミュージック")')
