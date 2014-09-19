@@ -1,20 +1,16 @@
 # coding:utf-8
 from subprocess import Popen, PIPE
-import os
+
 
 class controlitunes(object):
 
     def _itunesctrl(self, cmd):
-        
         if hasattr(cmd, "encode"):
             cmd = cmd.encode("utf-8")
-        
         osa = Popen(["osascript", "-"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
-        res, err = osa.communicate(script)
-        
+        res, err = osa.communicate(cmd)
         if err:
             raise Exception(err)
-        
         return res.decode("utf-8")
 
     def albuminfo(self):

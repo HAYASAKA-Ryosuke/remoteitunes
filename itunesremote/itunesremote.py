@@ -6,21 +6,17 @@ import itunescontrol
 app = Flask(__name__)
 itunes = itunescontrol.controlitunes()
 
-def playmusic():
-    pass
-
-def pausemusic():
-    pass
-
 
 @app.route('/itunes/')
 @app.route('/itunes/<param>')
 def index(param=None):
     itunesstatus = param
-    print(request.args.get('soundvalue'))
+    soundparam = request.args.get('soundvalue')
+    if soundparam is not None:
+        itunes.volume(soundparam)
     if itunesstatus == 'play':
         itunes.play()
-    elif itunesstatus == 'pause'
+    elif itunesstatus == 'pause':
         itunes.pause()
     return render_template('index.html', itunesstatus=itunesstatus)
 
