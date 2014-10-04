@@ -23,7 +23,8 @@ class controlitunes(object):
         return self._itunesctrl('tell application "iTunes" to set mute to false')
 
     def artistinfo(self):
-        return self._itunesctrl('tell application "iTunes" to artist of current track as string')
+        data = self._itunesctrl('tell application "iTunes" to artist of current track as string')
+        return data
 
     def trackinfo(self):
         return self._itunesctrl('tell application "iTunes" to name of current track as string')
@@ -56,13 +57,13 @@ class controlitunes(object):
         return self._itunesctrl('tell application "iTunes" to set sound volume to '+str(value))
 
     def playlist_album(self):
-        return self._itunesctrl('tell application "iTunes" to (get album of every track in playlist "ミュージック")')
+        return self._itunesctrl('tell application "iTunes" to (get album of every track in playlist "ミュージック")').split(',')
 
     def playlist_name(self):
-        return self._itunesctrl('tell application "iTunes" to (get name of every track in playlist "ミュージック")')
+        return self._itunesctrl('tell application "iTunes" to (get name of every track in playlist "ミュージック")').split(',')
 
     def playlist_id(self):
-        return self._itunesctrl('tell application "iTunes" to (get id of every track in playlist "ミュージック")')
+        return self._itunesctrl('tell application "iTunes" to (get id of every track in playlist "ミュージック")').split(',')
 
     def playlist_artist(self):
-        return self._itunesctrl('tell application "iTunes" to (get artist of every track in playlist "ミュージック")')
+        return self._itunesctrl('tell application "iTunes" to (get artist of every track in playlist "ミュージック")').split(',')
