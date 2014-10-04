@@ -3,6 +3,7 @@ from subprocess import Popen, PIPE
 
 
 class controlitunes(object):
+    musicname = 'Nue'
 
     def _itunesctrl(self, cmd):
         if hasattr(cmd, "encode"):
@@ -32,11 +33,11 @@ class controlitunes(object):
     def status(self):
         return self._itunesctrl('tell application "iTunes" to player state as string').split()[0]
 
-    def play(self, name=None):
-        return self._itunesctrl('tell application "iTunes" to play')
+    def play(self, musicname=None):
+        return self._itunesctrl('tell application "iTunes" to play track "' + str(self.musicname) + '" of playlist 2')
 
     def positionlengthinfo(self):
-        return self._itunesctrl('tell application "iTunes" set hoge to time of current track')
+        return self._itunesctrl('tell application "iTunes" to time of current track')
 
     def positioninfo(self):
         return self._itunesctrl('tell application "itunes" to player position')
