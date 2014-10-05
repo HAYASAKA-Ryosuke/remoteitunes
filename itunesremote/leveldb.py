@@ -1,11 +1,14 @@
 #coding: utf-8
 import plyvel
 
-class DataBase():
+class DataBase:
     import json
     
-    def __init__(self):
-        self.leveldb = plyvel.DB('./musicdb/', create_if_missing=True)
+    def __init__(self, dbname=None):
+        if dbname is None:
+            self.leveldb = plyvel.DB('./musicdb/', create_if_missing=True)
+        else:
+            self.leveldb = plyvel.DB('./'+dbname+'/', create_if_missing=True)
 
     def _jsondump(self, iddata, albumname, artistname, musicname):
         jsondata = self.json.dumps({'iddata': iddata, 'albumname': albumname, 'artistname':artistname,'musicname': musicname})
