@@ -39,7 +39,7 @@ class DataBase:
             vals=[]
             for keydata, val in self.leveldb:
                 keys.append(keydata)
-                vals.append(val)
+                vals.append(self.json.loads(val.decode()))
             return keys, vals
         else:
             readdata = self.json.loads(self.leveldb.get(bytes(str(key).encode())).decode())

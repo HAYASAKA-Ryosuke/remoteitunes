@@ -12,5 +12,7 @@ class test_leveldb(unittest.TestCase):
         self.itunes = itunesremote.itunescontrol.controlitunes()
     def test_dbtest(self):
         self.db.writemusic(osaobject=self.itunes, debug=True)
-        print(self.db.readmusic())
+        keys, vals = self.db.readmusic()
+        for val in vals:
+            print(val['musicname'])
 unittest.main()
