@@ -19,16 +19,7 @@ class DataBase:
             writedata = self._jsondump(iddata=iddata, albumname=albumname, artistname=artistname, musicname=musicname) 
             self.leveldb.put(bytes(iddata), writedata)
         elif str(type(osaobject)) == str("<class 'itunesremote.itunescontrol.controlitunes'>"):
-            if debug is False:
-                albums = osaobject.playlist_album()
-                names = osaobject.playlist_name()
-                ids= osaobject.playlist_id()
-                artists= osaobject.playlist_artist()
-            else:
-                albums = osaobject.playlist_album(debug=True)
-                names = osaobject.playlist_name(debug=True)
-                ids= osaobject.playlist_id(debug=True)
-                artists= osaobject.playlist_artist(debug=True)
+            ids, artists, albums, names = osaobject.get_playlist()
             with self.leveldb.write_batch() as wb:
                 for iddata, albumname, musicname, artistname in zip(ids, albums, names, artists):
                     wb.put(iddata.encode(), self._jsondump(iddata=iddata, albumname=albumname, artistname=artistname, musicname=musicname))

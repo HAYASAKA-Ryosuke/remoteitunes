@@ -1,9 +1,27 @@
 # coding:utf-8
 from subprocess import Popen, PIPE
+import os
 
 
 class controlitunes(object):
     musicname = 'Nue'
+
+    def get_playlist(self):
+        artistnames = []
+        albumnames = []
+        musicfiles = []
+        idnumber = []
+        num = 0
+        for root, dirname, filename in os.walk('/Users/hayasakaryosuke/Music/iTunes/iTunes Media/Music'):
+            if filename[0] != '.DS_Store':
+                idnumber.append(str(num))
+                artistnames.append(root.split('/')[-2])
+                albumnames.append(root.split('/')[-1])
+                musicfiles.append(filename)
+                num += 1
+        return idnumber, artistnames, albumnames, musicfiles
+
+
 
     def _itunesctrl(self, cmd):
         if hasattr(cmd, "encode"):
