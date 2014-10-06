@@ -52,7 +52,7 @@ class controlitunes(object):
         return self._itunesctrl('tell application "iTunes" to player state as string').split()[0]
 
     def play(self, musicname=None):
-        return self._itunesctrl('tell application "iTunes" to play track "' + str(self.musicname) + '" of playlist 2')
+        return self._itunesctrl('tell application "iTunes" to play track "' + str(self.musicname) + '"')
 
     def positionlengthinfo(self):
         return self._itunesctrl('tell application "iTunes" to time of current track')
