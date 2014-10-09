@@ -11,10 +11,10 @@ class DataBase:
             self.leveldb = plyvel.DB('./'+dbname+'/', create_if_missing=True)
 
     def _jsondump(self, iddata, albumname, artistname, musicname):
-        jsondata = self.json.dumps({'iddata': iddata, 'albumname': albumname, 'artistname':artistname,'musicname': musicname})
+        jsondata = self.json.dumps({'iddata': iddata, 'albumname': albumname, 'artistname': artistname,'musicname': musicname})
         return jsondata.encode()
 
-    def writemusic(self,iddata=None,musicname=None,albumname=None,artistname=None,osaobject=None,debug=False):
+    def writemusic(self, iddata=None, musicname=None, albumname=None, artistname=None, osaobject=None, debug=False):
         if osaobject is None:
             writedata = self._jsondump(iddata=iddata, albumname=albumname, artistname=artistname, musicname=musicname) 
             self.leveldb.put(bytes(iddata), writedata)

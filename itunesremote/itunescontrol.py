@@ -12,7 +12,7 @@ class controlitunes(object):
         musicfiles = []
         idnumber = []
         num = 0
-        for root, dirname, filename in os.walk('/Users/hayasakaryosuke/Music/iTunes/iTunes Media/Music'):
+        for root, dirname, filename in os.walk('/Users/hayasaka/Music/iTunes/iTunes Media/Music'):
             if filename[0] != '.DS_Store':
                 idnumber.append(str(num))
                 artistnames.append(root.split('/')[-2])
@@ -20,8 +20,6 @@ class controlitunes(object):
                 musicfiles.append(filename)
                 num += 1
         return idnumber, artistnames, albumnames, musicfiles
-
-
 
     def _itunesctrl(self, cmd):
         if hasattr(cmd, "encode"):

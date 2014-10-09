@@ -11,9 +11,11 @@
     </thead>
     <tbody>
         <tr>
-            <td>A</td>
-            <td>B</td>
-            <td>C</td>
+        {% for music, artist, album in musiclist %}
+            <td>{{ music }}</td>
+            <td>{{ artist }}</td>
+            <td>{{ album }}</td>
+        {% endfor %}
         </tr>
     </tbody>
 </table>

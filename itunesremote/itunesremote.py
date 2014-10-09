@@ -2,18 +2,30 @@
 
 from flask import Flask, render_template, request
 import itunescontrol
+import leveldb
 
 app = Flask(__name__)
-itunes = itunescontrol.controlitunes()
 
+db = leveldb.DataBase()
+itunes = itunescontrol.controlitunes()
+keys, vals = db.readmusic()
+music = [x['musicname'] for x in vals]
+artist = [x['artistname'] for x in vals]
+album = [x['albumname'] for x in vals]
 
 @app.route('/itunes/')
 @app.route('/itunes/<param>')
 def index(param=None):
     itunesstatus = param
     soundparam = request.args.get('soundvalue')
+    music = None
+    artist = None
+    album = None
     if itunesstatus is None:
-        pass
+        keys, vals = db.readmusic()
+        music = [x['musicname'] for x in vals]
+        artist = [x['artistname'] for x in vals]
+        album = [x['albumname'] for x in vals]
     if soundparam is not None:
         itunes.volume(soundparam)
     if itunesstatus == 'play':
@@ -24,8 +36,9 @@ def index(param=None):
         itunes.nexttrack()
     if itunesstatus == 'backward':
         itunes.prevtrack()
-    return render_template('index.html', itunesstatus=itunesstatus)
+    return render_template('index.html', itunesstatus=itunesstatus, musiclist=zip(music, artist, album))
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+
+    app.run(debug=False, host='0.0.0.0')
