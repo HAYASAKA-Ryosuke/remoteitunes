@@ -10,13 +10,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-        {% for music, artist, album in musiclist %}
-            <td>{{ music }}</td>
-            <td>{{ artist }}</td>
-            <td>{{ album }}</td>
+        {% for musicnames, artist, album in musiclist %}
+            {% for musicname in musicnames %}
+                <tr>
+                    <td>{{ musicname }}</td>
+                    <td>{{ artist }}</td>
+                    <td>{{ album }}</td>
+                </tr>
+            {% endfor %}
         {% endfor %}
-        </tr>
     </tbody>
 </table>
 {% endblock %}
