@@ -3,6 +3,8 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8"> 
+        <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap-theme.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css') }}">
@@ -38,8 +40,6 @@
         <script src="{{ url_for('static', filename='bower_components/bootstrap/js/dropdown.js') }}"></script>
         <script src="{{ url_for('static', filename='bower_components/bootstrap/js/button.js') }}"></script>
         <script src="{{ url_for('static', filename='bower_components/bootstrap/js/collapse.js') }}"></script>
-        <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
         <script type='text/javascript'>
             $('#volume').slider({
                 min: 0,    
